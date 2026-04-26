@@ -1,0 +1,76 @@
+1. What is Hadoop?
+
+Hadoop is an open-source framework used to store and process large datasets across a cluster of machines. It supports distributed storage and parallel processing.
+
+Main components:
+
+HDFS: Storage layer
+YARN: Resource management
+MapReduce: Processing engine
+Hadoop Common: Shared utilities
+2. Why is Hadoop used?
+
+Hadoop is used because it can handle:
+
+Huge volumes of data
+Structured, semi-structured, and unstructured data
+Fault tolerance
+Distributed processing
+Low-cost commodity hardware
+3. What is HDFS?
+
+HDFS, or Hadoop Distributed File System, is Hadoop’s storage system. It splits large files into blocks and stores them across multiple machines in a cluster.
+
+4. What is the default block size in HDFS?
+
+Common default block sizes:
+
+Older Hadoop versions: 64 MB
+Newer Hadoop versions: usually 128 MB
+5. What is replication in HDFS?
+
+Replication means storing multiple copies of each data block on different DataNodes.
+
+Default replication factor: 3
+
+This helps with fault tolerance. If one machine fails, Hadoop can still read the data from another copy.
+
+6. What are NameNode and DataNode?
+
+NameNode is the master node. It stores metadata such as:
+
+File names
+Directory structure
+Block locations
+Permissions
+
+DataNode is the worker node. It stores the actual data blocks.
+
+7. Does NameNode store actual data?
+
+No. The NameNode stores only metadata. Actual data is stored in DataNodes.
+
+8. What happens if the NameNode fails?
+
+If there is no high availability setup, the cluster becomes unavailable because the NameNode is the central metadata manager.
+
+Modern Hadoop supports NameNode High Availability, where a standby NameNode can take over.
+
+9. What is Secondary NameNode?
+
+The Secondary NameNode does not act as a backup NameNode.
+
+Its job is to periodically merge:
+
+FsImage
+EditLogs
+
+This helps reduce the startup time of the NameNode.
+
+10. What are FsImage and EditLog?
+
+FsImage: Snapshot of the file system metadata.
+
+EditLog: Log of recent changes made to the file system.
+
+Together, they help reconstruct the current state of HDFS metadata.
